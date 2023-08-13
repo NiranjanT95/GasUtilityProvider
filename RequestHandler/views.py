@@ -26,4 +26,10 @@ class RequestsView(LoginRequiredMixin, ListView):
 
 class FileView(LoginRequiredMixin, View):
     def get(self, request, file_name):
-        return serve(request, os.path.basename("files/"+file_name), os.path.dirname("files/"+file_name))
+        print(file_name)
+        # mimetype is replaced by content_type for django 1.7
+        response = HttpResponse(
+            open("files/"+file_name, 'rb').read(), content_type='application/force-download')
+        response['Content-Disposition'] = 'inline; filename=' + \
+            os.path.basename("files"+file_name)
+        return response
