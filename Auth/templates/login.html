@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  </style>
+   {% include 'bootstrap_links.html' %}
+</head>
+<body>
+  <header style="top:0; background-color: #D63384;"><center><a style="margin: 10%;"><h1>Profile</h1></a></center></header>
+  <br>
+  <div style="width: 50%; margin-left: 25%; margin-left: 25%;" class="form-control">
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label for="id_username" class="form-label">Email address/Username</label>
+  {{ form.username }}
+  </div>
+  <div>
+    <label for="id_password" class="form-label">Password</label>
+  {{ form.password }}
+  </div>
+  <br>
+  <button type="submit"  class="btn btn-primary">Log In</button>
+</form>
+<a href="#">Forget Password</a>
+<a href="#">Register</a>
+</div>
+{% include "small_footer.html" %}
+<script>
+//bootstrap adder
+document.getElementById('id_username').setAttribute('class', 'form-control');
+document.getElementById('id_password').setAttribute('class', 'form-control');
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  </style>
+   {% include 'bootstrap_links.html' %}
+</head>
+<body>
+  <header style="top:0; background-color: #D63384;"><center><a style="margin: 10%;"><h1>Profile</h1></a></center></header>
+  <br>
+ <a href="{% url 'requests_view' %}"> <span class="material-icons">
+home
+</span></a>
+<br>
+  <div style="width: 50%; margin-left: 20%; margin-left: 20%;" class="form-control">
+    <h4>Account Details</h4>
+    <table>
+    <tr><td>Username:</td><td>{{ account.user.username }}</td></tr>
+    <tr><td>Email Id:</td><td>{{ account.user.email }}</td></tr>
+    <tr><td>Name:</td><td>{{ account.user.first_name }} {{ account.user.last_name }}</td></tr>
+    <tr><td>Connection id:</td><td>{{ account.connection_id }}</td></tr>
+    <tr><td>Connection Establishment Date:</td><td>{{ account.connection_establishment_date }}</td></tr>
+    <tr><td>Account Status:</td><td>{{ account.connection_status }}</td></tr>
+    </table>
+  </div>
+{% include "small_footer.html" %}
+<script>
+</script>
+</body>
+</html>

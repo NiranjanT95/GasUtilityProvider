@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  </style>
+   {% include 'bootstrap_links.html' %}
+</head>
+<body>
+<header style="top:0; background-color: #D63384;"><center><a style="margin: 10%;"><h1>Requests</h1></a></center></header>
+<br>
+<a href="{% url 'account' %}"><span class="material-icons">
+account_circle
+</span>
+</a>
+<center>
+<form style="width:75%;" class="form-control" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+    <h4>Create a New Request</h4>
+     <select class="form-select" name='req_type' aria-label="Default select example">
+  <option value="general">General</option>
+  <option value="new connection">New Connection</option>
+  <option value="complaint">Complaint</option>
+    </select>
+    <div class="form-floating">
+  <textarea class="form-control" placeholder="type your request here..." id="floatingTextarea" name="req_subject"></textarea>
+  <label for="floatingTextarea">type your request here...</label>
+  </div>
+<div class="mb-3">
+  <label for="formFile"  class="form-label">Upload File:</label>
+  <input class="form-control" name="file" type="file" id="formFile">
+</div>
+  <br>
+  <button type="submit" class="btn btn-primary">Primary</button>
+</form>
+<br>
+  <div class="list-group" style="width:75%;">
+    {% for request in requests %}
+  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ request.req_type }}</h5>
+      <small>{{ request.status }}</small>
+    </div>
+    <p class="mb-1">{{ request.req_subject }}</p>
+    <small>{{ request.creation_datetime }}</small>
+  </a>
+{% empty %}
+   No Requests raised yet
+    {% endfor %}
+</div>
+
+</center>
+<br>
+<br>
+<br>
+{% include "small_footer.html" %}
+<script>
+    if (document.URL.includes('alert=true'))
+    {
+        alert("Request created successfully");
+    }
+    
+</script>
+</body>
+</html>
